@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B59776A2EFBC1970090FC72 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5977692EFBC1690090FC72 /* XCTestCase+MemoryLeakTracking.swift */; };
+		3B59776C2EFC19270090FC72 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B59776B2EFC19270090FC72 /* URLSessionHTTPClient.swift */; };
 		3BB3290E2EF79D9300D81E43 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB329022EF79D9300D81E43 /* EssentialFeed.framework */; };
 		3BB3291E2EF79DAC00D81E43 /* EssentialFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB3291C2EF79DAC00D81E43 /* EssentialFeedTests.swift */; };
 		3BB329222EF79DAC00D81E43 /* EssentialFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = 3BB3291F2EF79DAC00D81E43 /* EssentialFeed.docc */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		3B5977692EFBC1690090FC72 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		3B59776B2EFC19270090FC72 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		3BB329022EF79D9300D81E43 /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB3290D2EF79D9300D81E43 /* EssentialFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB3291C2EF79DAC00D81E43 /* EssentialFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedTests.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		3BB3292B2EF8025000D81E43 /* FeedAPI */ = {
 			isa = PBXGroup;
 			children = (
+				3B59776B2EFC19270090FC72 /* URLSessionHTTPClient.swift */,
 				3BB329312EFAC55800D81E43 /* FeedItemsMapper.swift */,
 				3BB3292C2EF8029700D81E43 /* RemoteFeedLoader.swift */,
 				3BB3292E2EFAC26500D81E43 /* HTTPClient.swift */,
@@ -257,6 +260,7 @@
 				3BB329222EF79DAC00D81E43 /* EssentialFeed.docc in Sources */,
 				3BB329232EF79DAC00D81E43 /* EssentialFeed.swift in Sources */,
 				3BB3292F2EFAC26500D81E43 /* HTTPClient.swift in Sources */,
+				3B59776C2EFC19270090FC72 /* URLSessionHTTPClient.swift in Sources */,
 				3BB329272EF79E8800D81E43 /* FeedLoader.swift in Sources */,
 				3BB3292D2EF8029700D81E43 /* RemoteFeedLoader.swift in Sources */,
 				3BB329322EFAC55800D81E43 /* FeedItemsMapper.swift in Sources */,
