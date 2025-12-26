@@ -1,5 +1,5 @@
 //
-//  FeedItemMapper.swift
+//  FeedItemsMapper.swift
 //  EssentialFeed
 //
 //  Created by Jai Prakash Yadav on 23/12/25.
@@ -9,7 +9,7 @@ import Foundation
 
 
 
-internal class FeedImageMapper {
+internal class FeedItemsMapper {
     private struct Root: Decodable {
         let items: [RemoteFeedItem]
     }
