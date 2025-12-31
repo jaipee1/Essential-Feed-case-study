@@ -14,7 +14,7 @@ class CodableFeedStore {
         let timestamp: Date
 
         var localFeed: [LocalFeedImage] {
-            feed.map { $0.local}
+            feed.map { $0.local }
         }
     }
 
@@ -140,6 +140,35 @@ class CodableFeedStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
+    func test_retrieve_hasNoSideEffectOnNonEmptyCache() {
+        let sut = makeSUT()
+        let feed = uniqueImageFeed().local
+        let timestamp = Date()
+        let exp = expectation(description: "wait for retrieval to complete")
+        sut.insert(feed, timestamp: timestamp) { insertionError in
+            XCTAssertNil(insertionError, "Expected feed to be inserted successfully")
+            sut.retrieve { firstResult in
+                sut.retrieve { secondResult in
+                    switch (firstResult, secondResult) {
+                    case let (.found(firstRound), .found(secondRound)):
+                        XCTAssertEqual(firstRound.feed, feed)
+                        XCTAssertEqual(firstRound.timestamp, timestamp)
+
+                        XCTAssertEqual(secondRound.feed, feed)
+                        XCTAssertEqual(secondRound.timestamp, timestamp)
+                    default:
+                        XCTFail(
+                            "Expected retrieving twice from non empty cache to deliver same found result with feed \(feed) and timestamp \(timestamp), got \(firstResult) and \(secondResult) instead."
+                        )
+                    }
+                    exp.fulfill()
+                }
+            }
+        }
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
     // Helper
 
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableFeedStore {
@@ -157,7 +186,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
 
     private func deleteStoreArtefacts() {
-            // persistent cache will need to remove otherwise it will create a side effect and because of that we might see some failed unit tests
+        // persistent cache will need to remove otherwise it will create a side effect and because of that we might see some failed unit tests
         try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
 
