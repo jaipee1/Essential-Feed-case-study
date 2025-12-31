@@ -70,13 +70,13 @@ class CodableFeedStoreTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // persistent cache will need to remove otherwise it will create a side effect and because of that we might see some failed unit tests
-        try? FileManager.default.removeItem(at: storeURL())
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
 
     override func tearDown() {
         super.tearDown()
             // persistent cache will need to remove otherwise it will create a side effect and because of that we might see some failed unit tests
-        try? FileManager.default.removeItem(at: storeURL())
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
 
     func test_retrieve_deliversEmptyOnEmptyCache() {
@@ -145,14 +145,14 @@ class CodableFeedStoreTests: XCTestCase {
     // Helper
 
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableFeedStore {
-        let sut = CodableFeedStore(storeURL: storeURL())
+        let sut = CodableFeedStore(storeURL: testSpecificStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
 
-    private func storeURL() -> URL {
-        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(
-            "image-feed.store"
+    private func testSpecificStoreURL() -> URL {
+        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent(
+            "\(type(of: self)).store"
         )
     }
 }
