@@ -24,9 +24,9 @@ extension LocalFeedLoader: FeedLoader {
         store.retrieve { [weak self]result in
             guard let self else { return }
             switch result {
-            case let .found(feed, timestamp) where FeedCachePolicy.validate(timestamp, against: currentDate()):
+            case let .success(.found(feed, timestamp)) where FeedCachePolicy.validate(timestamp, against: currentDate()):
                 completion(.success(feed.toModels()))
-            case .found, .empty:
+            case .success:
                 completion(.success([]))
             case let .failure(error):
                 completion(.failure(error))
@@ -42,9 +42,9 @@ extension LocalFeedLoader {
             switch result {
             case .failure:
                 store.deleteCachedFeed { _ in }
-            case let .found(_, timestamp) where !FeedCachePolicy.validate(timestamp, against: currentDate()):
+            case let .success(.found(_, timestamp)) where !FeedCachePolicy.validate(timestamp, against: currentDate()):
                 store.deleteCachedFeed { _ in }
-            case .empty, .found: break
+            case .success: break
             }
         }
 
